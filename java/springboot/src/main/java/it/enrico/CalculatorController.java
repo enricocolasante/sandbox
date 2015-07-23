@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloController {
+public class CalculatorController {
 
     @Autowired
-    private HelloEntryPoint helloEntryPoint;
+    private CalculatorEntryPoint calculatorEntryPoint;
 
     @RequestMapping("/")
     public String index() {
-        return helloEntryPoint.index();
+        return "Greetings from Spring Boot!";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/sum")
-    public String sum(@RequestParam String val1, @RequestParam String val2) {
-        return helloEntryPoint.sum(val1,val2);
+    @RequestMapping(method = RequestMethod.GET, value="/equation")
+    public EquationResult equation(@RequestParam String a, @RequestParam String b, @RequestParam String c) {
+        return calculatorEntryPoint.equation(a,b,c);
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/error")
@@ -29,8 +29,8 @@ public class HelloController {
     public void error() {
     }
 
-    public void setHelloEntryPoint(HelloEntryPoint helloEntryPoint) {
-        this.helloEntryPoint = helloEntryPoint;
+    public void setCalculatorEntryPoint(CalculatorEntryPoint calculatorEntryPoint) {
+        this.calculatorEntryPoint = calculatorEntryPoint;
     }
 }
 
