@@ -1,0 +1,23 @@
+defmodule Chop do
+  def guess(number, s..e)
+    do
+      newNumber = div(s+e,2)
+      guess(number, newNumber, s..e)
+    end
+
+  defp guess(number, number, s..e), do: IO.puts "#{number}"
+  defp guess(number, actualNumber, s..e)
+    when actualNumber > number
+    do
+      newNumber = div(s+e,2)
+      IO.puts "Is it more " <> to_string(newNumber)
+      guess(number, newNumber, s..actualNumber-1)
+    end
+  defp guess(number, actualNumber, s..e)
+  when actualNumber < number
+  do
+    newNumber = div(s+e,2)
+    IO.puts "Is it less " <> to_string(newNumber)
+    guess(number, newNumber, actualNumber+1..e)
+  end
+end
