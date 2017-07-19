@@ -1,19 +1,36 @@
 <!doctype html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="mystyle.css">
     <meta charset="utf-8">
     <title>Demo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
 </head>
-<body>
-    <form>
-      <input type="number" name="a" id="a" /> x^2 + 
-      <input type="number" name="b" id="b" /> x + 
-      <input type="number" name="c" id="c" /> = 0
-      </br>
-      <button id="calculate">Calculate</button>
+<h1 class="title" >Second grade equation solver <small>Put the values and click calculate</small></h1>
+<body class="container-fluid">
+    <form class="form-inline">
+      <div class="form-group">
+        <input type="number" name="a" class="form-control" id="a" /> 
+        <label for="a">x^2 +</label>
+      </div>
+      <div class="form-group">
+        <input type="number" name="a" class="form-control" id="b" /> 
+        <label for="b">x +</label>
+      </div>
+      <div class="form-group">
+        <input type="number" name="a" class="form-control" id="c" /> 
+        <label for="c"> = 0</label>
+      </div>
+      <button type="submit" class="btn btn-default" id="calculate">Calculate</button>
     </form>
 
 	<div id="customMessage">
