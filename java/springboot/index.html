@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+</head>
+<body>
+    <form>
+      <input type="number" name="a" id="a" /> x^2 + 
+      <input type="number" name="b" id="b" /> x + 
+      <input type="number" name="c" id="c" /> = 0
+      </br>
+      <button id="calculate">Calculate</button>
+    </form>
+
+	<div id="customMessage">
+		
+	</div>
+    <script>
+        $("#calculate").click(function(e) {
+            e.preventDefault();
+            console.log("Button clicked")
+             $.ajax({
+                type: "GET",
+                url: "http://localhost:8099/equation",
+                data: {
+                    a:$('#a').val(),
+                    b:$('#b').val(),
+                    c:$('#c').val()
+                },
+              success: function( result ) {
+                $("#customMessage").html("<h1>There are "+ result.solutions.length +" solutions. </br> <strong>" + result.solutions + "</strong></h1>");
+              }
+            });
+        });
+ 
+    </script>
+    
+</body>
+</html>
