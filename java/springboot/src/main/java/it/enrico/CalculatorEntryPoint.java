@@ -10,7 +10,7 @@ public class CalculatorEntryPoint {
     private Calculator calculator;
 
     public EquationResult equation(String a, String b, String c) {
-        return calculator.equation(Integer.valueOf(a), Integer.valueOf(b), Integer.valueOf(c));
+        return calculator.equation(Double.valueOf(a), Double.valueOf(b), Double.valueOf(c));
     }
 
     public void setCalculator(Calculator calculator) { this.calculator = calculator; }

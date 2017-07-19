@@ -12,25 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class CalculatorController {
 
     @Autowired
-    private CalculatorEntryPoint calculatorEntryPoint;
+    private Calculator calculator;
 
-    @RequestMapping("/")
+    @RequestMapping(method = RequestMethod.GET, value = "/")
     public String index() {
         return "Greetings from Spring Boot!";
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/equation")
-    public EquationResult equation(@RequestParam String a, @RequestParam String b, @RequestParam String c) {
-        return calculatorEntryPoint.equation(a,b,c);
+    public EquationResult equation(@RequestParam Double a, @RequestParam Double b, @RequestParam Double c) {
+        return calculator.equation(a,b,c);
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/error")
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void error() {
-    }
-
-    public void setCalculatorEntryPoint(CalculatorEntryPoint calculatorEntryPoint) {
-        this.calculatorEntryPoint = calculatorEntryPoint;
     }
 }
 

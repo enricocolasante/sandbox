@@ -3,17 +3,17 @@ package it.enrico;
 import java.util.Set;
 
 public class EquationResult {
-    private Set<Integer> solutions;
+    private Set<Double> solutions;
 
-    public EquationResult(Set<Integer> solutions) {
+    public EquationResult(Set<Double> solutions) {
         this.solutions = solutions;
     }
 
-    public void setSolutions(Set<Integer> solutions) {
+    public void setSolutions(Set<Double> solutions) {
         this.solutions = solutions;
     }
 
-    public Set<Integer> getSolutions() {
+    public Set<Double> getSolutions() {
         return solutions;
     }
 }
