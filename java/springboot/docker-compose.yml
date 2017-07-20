@@ -1,0 +1,30 @@
+version: "2"
+networks:
+    main:
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile-frontend
+    ports:
+     - "8080:80"
+    environment:
+     - NGINX_HOST=enrico.it
+     - NGINX_PORT=80
+    links: 
+     - backend:backend
+    networks:
+      main:
+        aliases:
+          - frontend
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile-backend
+    ports:
+     - "8099:8099"
+    command: mvn spring-boot:run
+    networks:
+      main:
+        aliases:
+          - backend
