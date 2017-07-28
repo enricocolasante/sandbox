@@ -18,18 +18,20 @@
 <h1 class="title" >Second grade equation solver <small>Put the values and click calculate</small></h1>
 <body class="container-fluid">
     <form class="form-inline">
-      <div class="form-group">
+      <div class="input-group">
         <input type="number" name="a" class="form-control" id="a" /> 
-        <label for="a">x^2 +</label>
+        <span class="input-group-addon">x<sup>2</sup></span>
       </div>
-      <div class="form-group">
+      +
+      <div class="input-group">
         <input type="number" name="a" class="form-control" id="b" /> 
-        <label for="b">x +</label>
+        <span class="input-group-addon">x</span>
       </div>
-      <div class="form-group">
+      +
+      <div class="input-group">
         <input type="number" name="a" class="form-control" id="c" /> 
-        <label for="c"> = 0</label>
       </div>
+      = 0
       <button type="submit" class="btn btn-default" id="calculate">Calculate</button>
     </form>
 
@@ -41,7 +43,7 @@
             e.preventDefault();
             console.log("Button clicked")
              $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "http://localhost:8099/equation",
                 data: {
                     a:$('#a').val(),
@@ -49,12 +51,30 @@
                     c:$('#c').val()
                 },
               success: function( result ) {
+                clear();
+                $('#a').parent().addClass('has-success has-feedback');
+                $('#b').parent().addClass('has-success has-feedback');
+                $('#c').parent().addClass('has-success has-feedback');
+                
                 $("#customMessage").html("<h1>There are "+ result.solutions.length +" solutions. </br> <strong>" + result.solutions + "</strong></h1>");
+              },
+              statusCode: {
+                400: function(result) {
+                  clear();
+                  result.responseJSON.map(function(x){return x.field})
+                    .forEach(function(x){$('#'+x).parent().addClass('has-error has-feedback');})
+                }
               }
             });
         });
- 
+
+        function clear() {
+          $('#a').parent().removeClass('has-success has-error has-feedback');
+          $('#b').parent().removeClass('has-success has-error has-feedback');
+          $('#c').parent().removeClass('has-success has-error has-feedback');
+        }
+
     </script>
-    
+
 </body>
 </html>
