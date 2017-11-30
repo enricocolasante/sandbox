@@ -4,15 +4,11 @@ defmodule Discuss.TopicController do
   alias Discuss.Topic
 
   def delete(conn, %{"id" => topic_id}) do
-  	
-  	case Repo.delete(Topic, topic_id) do
-    	{:ok, _topic} ->
-    		conn
-    		|> put_flash(:info, "Topic Deleted")
-    		|> redirect(to: topic_path(conn, :index))
-    	{:error, changeset} -> 
-    		render conn, "index.html"
-    end
+  	Repo.get!(Topic, topic_id) |> Repo.delete!
+
+    conn
+    |> put_flash(:info, "Topic Deleted")
+    |> redirect(to: topic_path(conn, :index))
   end
 
   def update(conn, %{"topic" => topic, "id" => topic_id}) do
@@ -37,6 +33,7 @@ defmodule Discuss.TopicController do
   end
 
   def index(conn, _params) do
+  IO.inspect(conn.assigns.user)
 	topics = Repo.all(Topic)
 
 	render conn, "index.html", topics: topics
